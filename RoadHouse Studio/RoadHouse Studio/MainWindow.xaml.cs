@@ -7,9 +7,9 @@ namespace RoadHouse_Studio
 
     public partial class MainWindow : Window
     {
-        private readonly Main mainPage = new Main();
-        private readonly Auction auctionPage = new Auction();
-        private readonly Samples samplesPage = new Samples();
+        private readonly MainPage mainPage = new MainPage();
+        private readonly AuctionPage auctionPage = new AuctionPage();
+        private readonly SamplesPage samplesPage = new SamplesPage();
 
         public MainWindow()
         {
