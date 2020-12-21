@@ -5,8 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RoadHouse_Studio"
         mc:Ignorable="d"
-        Title="RoadHouse Studio" Height="450" Width="800" ResizeMode="CanMinimize">
+        Title="RoadHouse Studio" Height="600" Width="1100" ResizeMode="CanMinimize" Icon="Images/favicon.ico" WindowStartupLocation="CenterScreen" Background="Black">
+    <Window.Resources>
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="4" BorderBrush="#FF37CBA9" BorderThickness="2">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#66CB3737"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFCF3535"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Menu VerticalAlignment="Top" Height="20">
+            <MenuItem Header="Файл">
+                <MenuItem Name="Menu_ImportSamples" Header="Импорт сэмплов"></MenuItem>
+                <Separator/>
+                <MenuItem Name="Menu_Exit" Header="Выход"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Окна">
+                <MenuItem Name="Menu_Main" Header="Главная"></MenuItem>
+                <MenuItem Name="Menu_Auction" Header="Аукцион"></MenuItem>
+                <MenuItem Name="Menu_Samples" Header="Сэмплы"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Image Source="Images/background.jpg" Stretch="UniformToFill" Opacity="0.2" Margin="0,20,0,0"/>
+
+        <Grid Name="NavigationGrid"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="0,25,0,0" Background="#19F30F0F" >
+            <Button Name="Nav_Main" Style="{DynamicResource RoundCorner}" Content="Главная" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,0,5,160" Foreground="White" />
+            <Button Name="Nav_Auction" Style="{DynamicResource RoundCorner}" Content="Аукцион" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,0,5,75" Foreground="White" />
+            <Button Name="Nav_Samples" Style="{DynamicResource RoundCorner}" Content="Сэмплы" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,10,5,0" Foreground="White" />
+            <Label Content="v.1.0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="White"/>
+        </Grid>
+        <Frame Name="NavigationFrame" NavigationUIVisibility="Hidden" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="160,20,0,0" />
     </Grid>
 </Window>
