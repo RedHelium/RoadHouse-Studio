@@ -13,7 +13,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                         <Grid x:Name="grid">
-                            <Border x:Name="background" CornerRadius="6" Background="#FFDA2D2D">
+                            <Border x:Name="background" CornerRadius="20" Background="#FFDA2D2D">
                                 <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center">
                                 </ContentPresenter>
@@ -54,7 +54,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid x:Name="grid">
-                            <Border x:Name="border" CornerRadius="6" Background="#FFDA2D2D">
+                            <Border x:Name="border" CornerRadius="20" Background="#FFDA2D2D">
                                 <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center">
                                 </ContentPresenter>
@@ -80,16 +80,19 @@
     <Grid>
         <Label Content="Сэмплы" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" FontSize="42"/>
 
-        <Button Style="{DynamicResource RoundCorner}" Name="SelectPath" ToolTip="Выбрать путь к папке с сэмплами" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="48" Height="48" Margin="0,0,450,265" BorderBrush="{x:Null}" Background="#FFDA2D2D">
+        <Button Style="{DynamicResource RoundCorner}" Name="SelectPath" ToolTip="Выбрать путь к папке с сэмплами" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="48" Height="48" Margin="0,0,650,265" BorderBrush="{x:Null}" Background="#FFDA2D2D">
             <Image Source="/RoadHouse Studio;component/Images/Icons/folder.png" Margin="7"/>
         </Button>
-        <Button Style="{DynamicResource RoundCorner}" Name="Refresh" ToolTip="Обновить содержимое папки с сэмплами" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="48" Height="48" Margin="0,0,350,265" BorderBrush="{x:Null}" Background="#FFDA2D2D">
+        <Button Style="{DynamicResource RoundCorner}" Name="Refresh" ToolTip="Обновить содержимое папки с сэмплами" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="48" Height="48" Margin="0,0,550,265" BorderBrush="{x:Null}" Background="#FFDA2D2D">
             <Image Source="/RoadHouse Studio;component/Images/Icons/refresh.png" Margin="7"/>
         </Button>
-        <ToggleButton Name="SwitchSamplesState" ToolTip="Включает/отключает сэмплы" Style="{DynamicResource RoundToggleCorner}"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="48" Height="48" Background="#FFDA2D2D" BorderBrush="{x:Null}" Margin="0,0,250,265" >
+        <ToggleButton Name="SwitchSamplesState" ToolTip="Включает/отключает сэмплы" Style="{DynamicResource RoundToggleCorner}"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="48" Height="48" Background="#FFDA2D2D" BorderBrush="{x:Null}" Margin="0,0,450,265" >
             <Label Name="SwitchSamplesLabel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Выкл" FontWeight="Bold" FontSize="14" />
         </ToggleButton>
-
-        <ListBox Name="SamplesList" BorderThickness="1" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="500" Height="250" Background="Transparent" Margin="0,0,0,10" Foreground="White"/>
+        <Button Style="{DynamicResource RoundCorner}" Name="Play" ToolTip="Воспроизвести выбранный сэмпл" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="48" Height="48" Margin="0,0,350,265" BorderBrush="{x:Null}" Background="#FFDA2D2D">
+            <Image Source="/RoadHouse Studio;component/Images/Icons/play.png" Margin="10"/>
+        </Button>
+        
+        <ListBox Name="SamplesList" SelectionMode="Single" BorderThickness="1" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="700" Height="250" Background="Transparent" Margin="0,0,0,10" Foreground="White"/>
     </Grid>
 </Page>

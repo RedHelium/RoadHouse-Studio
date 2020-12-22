@@ -61,6 +61,24 @@ namespace RoadHouse_Studio.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на v.1.0.
+        /// </summary>
+        internal static string App_Version {
+            get {
+                return ResourceManager.GetString("App Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Директория отсутствует или указан путь к несуществующей папке.
+        /// </summary>
+        internal static string Directory_Exception_Message {
+            get {
+                return ResourceManager.GetString("Directory Exception Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Выкл.
         /// </summary>
         internal static string Off_State {
@@ -79,7 +97,7 @@ namespace RoadHouse_Studio.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на *.txt.
+        ///   Ищет локализованную строку, похожую на *.mp3.
         /// </summary>
         internal static string Sound_Ext {
             get {

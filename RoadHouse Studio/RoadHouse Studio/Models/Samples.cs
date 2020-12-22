@@ -1,14 +1,15 @@
-﻿using Ookii.Dialogs.Wpf;
+﻿using NAudio.Wave;
+using Ookii.Dialogs.Wpf;
 using RoadHouse_Studio.Resources;
 using System;
 using System.IO;
+using System.Windows;
 
 namespace RoadHouse_Studio.Models
 {
     public sealed class Samples
     {
-        private string pathToSamples; //TODO: Save this field in file
-        
+
         public string[] sampleFilenames { get; private set; }
 
         public EventHandler ActivateSamplesEvent;
@@ -18,10 +19,13 @@ namespace RoadHouse_Studio.Models
 
         public void ActivateSamples() => ActivateSamplesEvent?.Invoke(this, EventArgs.Empty);
         public void DiactivateSamples() => DiactivateSamplesEvent?.Invoke(this, EventArgs.Empty);
+       
         public void Refresh()
         {
             LoadFiles();
-            RefreshSamplesEvent?.Invoke(this, EventArgs.Empty);
+
+            if (!string.IsNullOrEmpty(MainSettings.Default.PathToSamples) && Directory.Exists(MainSettings.Default.PathToSamples))
+                RefreshSamplesEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void Open()
@@ -29,16 +33,20 @@ namespace RoadHouse_Studio.Models
             OpenDialogFolder();
             LoadFiles();
             
-            if(!string.IsNullOrEmpty(pathToSamples) && Directory.Exists(pathToSamples))
+            if(!string.IsNullOrEmpty(MainSettings.Default.PathToSamples) && Directory.Exists(MainSettings.Default.PathToSamples))
                 OpenSamplesFolderEvent?.Invoke(this, EventArgs.Empty);
 
         }
 
         private void LoadFiles()
         {
-            if (string.IsNullOrEmpty(pathToSamples) || !Directory.Exists(pathToSamples)) return;
+            if (string.IsNullOrEmpty(MainSettings.Default.PathToSamples) || !Directory.Exists(MainSettings.Default.PathToSamples)) return;
 
-            sampleFilenames = Directory.GetFiles(pathToSamples, Strings.Sound_Ext);
+            try
+            {
+                sampleFilenames = Directory.GetFiles(MainSettings.Default.PathToSamples, Strings.Sound_Ext);
+            }
+            catch(IOException) { MessageBox.Show("[Сэмплы] " + Strings.Directory_Exception_Message); }
         }
 
         private void OpenDialogFolder()
@@ -48,10 +56,21 @@ namespace RoadHouse_Studio.Models
 
             if (dlg.ShowDialog() ?? true)
             {
-                pathToSamples = dlg.SelectedPath;
+                MainSettings.Default.PathToSamples = dlg.SelectedPath;
             }
-            else pathToSamples = string.Empty;
+            else MainSettings.Default.PathToSamples = string.Empty;
 
+            MainSettings.Default.Save();
         }
+
+        public void Play(string path)
+        {
+            if (string.IsNullOrEmpty(path)) return;
+
+            Mp3FileReader reader = new Mp3FileReader(path);
+            WaveOut waveOut = new WaveOut();
+            waveOut.Init(reader);
+            waveOut.Play();
+        }      
     }
 }

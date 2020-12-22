@@ -1,4 +1,6 @@
 ﻿using RoadHouse_Studio.Pages;
+using RoadHouse_Studio.Resources;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,9 +19,14 @@ namespace RoadHouse_Studio
 
             NavigationFrame.Navigate(mainPage);
 
+            InitViewerEvents();
+           
+        }
+
+        private void InitViewerEvents()
+        {
             InitNavigationEvents();
             InitMenuEvents();
-           
         }
 
         private void InitNavigationEvents()
@@ -34,7 +41,11 @@ namespace RoadHouse_Studio
             InitNavigationMenuButton(Menu_Main, mainPage);
             InitNavigationMenuButton(Menu_Auction, auctionPage);
             InitNavigationMenuButton(Menu_Samples, samplesPage);
+
+            Menu_ImportSamples.Click += ImportSamples;
         }
+
+        private void ImportSamples(object sender, RoutedEventArgs args) => samplesPage.samples.Open();
 
         private void InitNavigationButton(Button button, Page page)
         => button.Click += (sender, EventArgs) => { Navigate(sender, EventArgs, page); };
@@ -43,6 +54,11 @@ namespace RoadHouse_Studio
         => item.Click += (sender, EventArgs) => { Navigate(sender, EventArgs, page); };
 
         public void Navigate(object sender, RoutedEventArgs args, Page page) => NavigationFrame.Navigate(page);
-        
+
+        private void InitWindow(object sender, EventArgs args)
+        {
+            AppVersion.Content = Strings.App_Version;
+            samplesPage.samples.Refresh();
+        }
     }
 }

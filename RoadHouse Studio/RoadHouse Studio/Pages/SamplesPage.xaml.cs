@@ -10,7 +10,9 @@ namespace RoadHouse_Studio.Pages
     
     public partial class SamplesPage : Page
     {
-        private Samples samples;
+        public Samples samples { get; private set; }
+
+        private string selectedSample;
 
         public SamplesPage()
         {
@@ -38,6 +40,8 @@ namespace RoadHouse_Studio.Pages
             SwitchSamplesState.Click += SwitchSamples;
             Refresh.Click += RefreshSamples;
             SelectPath.Click += OpenSamplesFolder;
+            SamplesList.SelectionChanged += SelectSample;
+            Play.Click += PlaySample;
         }
 
         private void SwitchSamples(object sender, RoutedEventArgs args)
@@ -73,5 +77,17 @@ namespace RoadHouse_Studio.Pages
             if (state) label.Content = Strings.On_State;
             else label.Content = Strings.Off_State;
         }
+
+        private void SelectSample(object sender, RoutedEventArgs args)
+        {
+            object selectedItem = (sender as ListBox).SelectedItem;
+
+            if(selectedItem != null)
+            selectedSample = selectedItem.ToString();
+        }
+
+        private void PlaySample(object sender, RoutedEventArgs args)
+        =>  samples.Play(selectedSample);
+        
     }
 }
