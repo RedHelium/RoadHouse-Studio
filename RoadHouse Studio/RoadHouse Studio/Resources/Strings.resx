@@ -132,4 +132,7 @@
   <data name="Sound Ext" xml:space="preserve">
     <value>*.mp3</value>
   </data>
+  <data name="Test Server URL" xml:space="preserve">
+    <value>ws://devbot.ekma.is</value>
+  </data>
 </root>

@@ -104,5 +104,14 @@ namespace RoadHouse_Studio.Resources {
                 return ResourceManager.GetString("Sound Ext", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ws://devbot.ekma.is.
+        /// </summary>
+        internal static string Test_Server_URL {
+            get {
+                return ResourceManager.GetString("Test Server URL", resourceCulture);
+            }
+        }
     }
 }

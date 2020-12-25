@@ -1,4 +1,5 @@
-﻿using RoadHouse_Studio.Pages;
+﻿using RoadHouse_Studio.Networking;
+using RoadHouse_Studio.Pages;
 using RoadHouse_Studio.Resources;
 using System;
 using System.Windows;
@@ -20,6 +21,9 @@ namespace RoadHouse_Studio
             NavigationFrame.Navigate(mainPage);
 
             InitViewerEvents();
+
+            SocketSenderTest t = new SocketSenderTest();
+            t.TestConnection();
            
         }
 
