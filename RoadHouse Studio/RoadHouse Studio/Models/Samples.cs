@@ -16,6 +16,8 @@ namespace RoadHouse_Studio.Models
         public EventHandler DiactivateSamplesEvent;
         public EventHandler RefreshSamplesEvent;
         public EventHandler OpenSamplesFolderEvent;
+        public EventHandler FoundSampleEvent;
+        public EventHandler NotFoundSampleEvent;
 
         public void ActivateSamples() => ActivateSamplesEvent?.Invoke(this, EventArgs.Empty);
         public void DiactivateSamples() => DiactivateSamplesEvent?.Invoke(this, EventArgs.Empty);
@@ -26,6 +28,7 @@ namespace RoadHouse_Studio.Models
 
             if (!string.IsNullOrEmpty(MainSettings.Default.PathToSamples) && Directory.Exists(MainSettings.Default.PathToSamples))
                 RefreshSamplesEvent?.Invoke(this, EventArgs.Empty);
+
         }
 
         public void Open()
@@ -71,6 +74,29 @@ namespace RoadHouse_Studio.Models
             WaveOut waveOut = new WaveOut();
             waveOut.Init(reader);
             waveOut.Play();
-        }      
+        }
+        
+        public void Find(string name)
+        {
+            string samplePath = FindSample(name);
+
+            if (!string.IsNullOrEmpty(samplePath))
+            {
+                Play(samplePath);
+                FoundSampleEvent?.Invoke(this, EventArgs.Empty);
+            }
+            else NotFoundSampleEvent?.Invoke(this, EventArgs.Empty);
+                
+        }
+
+        private string FindSample(string name)
+        {
+            for (ushort sampleIndex = 0; sampleIndex < sampleFilenames.Length; sampleIndex++)
+            {
+                if (sampleFilenames[sampleIndex].Contains(name)) return sampleFilenames[sampleIndex];
+            }
+
+            return string.Empty;
+        }
     }
 }
