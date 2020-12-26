@@ -113,5 +113,32 @@ namespace RoadHouse_Studio.Resources {
                 return ResourceManager.GetString("Test Server URL", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на id.twitch.tv.
+        /// </summary>
+        internal static string Twitch_OAuth_Host {
+            get {
+                return ResourceManager.GetString("Twitch OAuth Host", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на /oauth2/authorize.
+        /// </summary>
+        internal static string Twitch_OAuth_Path {
+            get {
+                return ResourceManager.GetString("Twitch OAuth Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на https.
+        /// </summary>
+        internal static string Twitch_OAuth_Protocol {
+            get {
+                return ResourceManager.GetString("Twitch OAuth Protocol", resourceCulture);
+            }
+        }
     }
 }

@@ -135,4 +135,13 @@
   <data name="Test Server URL" xml:space="preserve">
     <value>ws://devbot.ekma.is</value>
   </data>
+  <data name="Twitch OAuth Host" xml:space="preserve">
+    <value>id.twitch.tv</value>
+  </data>
+  <data name="Twitch OAuth Path" xml:space="preserve">
+    <value>/oauth2/authorize</value>
+  </data>
+  <data name="Twitch OAuth Protocol" xml:space="preserve">
+    <value>https</value>
+  </data>
 </root>

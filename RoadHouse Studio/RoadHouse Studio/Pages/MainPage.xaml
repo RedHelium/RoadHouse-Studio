@@ -11,6 +11,12 @@
     <Grid>
         <Grid>
             <Label Content="Главная" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" FontSize="42"/>
+
+            <Label Content="Client ID" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Margin="0,0,500,200" />
+            <PasswordBox Name="ClientID" HorizontalAlignment="Center"  MaxLength="128" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,0,100,125" />
+            <Label Content="Client Secret" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Margin="0,0,450,0" />
+            <PasswordBox Name="ClientSecret" HorizontalAlignment="Center"  MaxLength="128" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,75,100,0" />
+
         </Grid>
     </Grid>
 </Page>

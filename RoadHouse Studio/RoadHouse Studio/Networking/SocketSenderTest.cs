@@ -5,10 +5,13 @@ using System;
 using System.Collections.Generic;
 using WebSocketSharp;
 
+
 namespace RoadHouse_Studio.Networking
 {
+
     public sealed class SocketSenderTest
     {
+        
         public void TestConnection()
         {
             JSONLogin jsonLogin = new JSONLogin();

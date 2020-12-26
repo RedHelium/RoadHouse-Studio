@@ -22,8 +22,29 @@ namespace RoadHouse_Studio
 
             InitViewerEvents();
 
-            SocketSenderTest t = new SocketSenderTest();
-            t.TestConnection();
+            //TODO: Remove
+            UriResponseBuilder r = new UriResponseBuilder(Strings.Twitch_OAuth_Protocol, Strings.Twitch_OAuth_Host, Strings.Twitch_OAuth_Path);
+            Query q = new Query();
+            Scopes s = new Scopes();
+            s.Append("channel", "read", "redemptions");
+            s.Append("channel", "manage", "redemptions");
+            s.Append("channel", "read", "subscriptions", string.Empty);
+            q.Init(new System.Collections.Generic.KeyValuePair<string, string>("response_type", "token"));
+            q.Append('&', new System.Collections.Generic.KeyValuePair<string, string>("client_id", "<client_id>"));
+            q.Append('&', new System.Collections.Generic.KeyValuePair<string, string>("redirect_uri", "http://localhost"));
+            q.Append('&', new System.Collections.Generic.KeyValuePair<string, string>("scope", s.ToString()));
+
+            r.BuildUri(q);
+            Content c = new Content();
+            c.Start();
+            c.Append(new System.Collections.Generic.KeyValuePair<string, string>("title", "game analysis 1v1"));
+            c.Append(new System.Collections.Generic.KeyValuePair<string, string>("cost", "50000"), string.Empty);
+            c.End();
+
+            Console.WriteLine(c.ToString());           
+
+            //SocketSenderTest t = new SocketSenderTest();
+            //t.TestConnection();
            
         }
 
