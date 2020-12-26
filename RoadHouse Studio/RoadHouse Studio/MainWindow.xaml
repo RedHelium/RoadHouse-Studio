@@ -15,7 +15,10 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid x:Name="grid">
-                            <Border x:Name="border" CornerRadius="4" BorderBrush="#FF37CBA9" BorderThickness="2">
+                            <Border x:Name="border" CornerRadius="12"  BorderBrush="Black" BorderThickness="1" Background="White">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="12" ShadowDepth="3" Direction="-90"/>
+                                </Border.Effect>
                                 <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center">
                                 </ContentPresenter>
@@ -25,12 +28,13 @@
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Background" TargetName="border">
                                     <Setter.Value>
-                                        <SolidColorBrush Color="#66CB3737"/>
+                                        <SolidColorBrush Color="#FF373ECB"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" TargetName="border" Value="#FFCF3535"/>
+                                <Setter Property="BorderThickness" TargetName="border" Value="3"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF373ECB"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
@@ -48,10 +52,13 @@
                 <Separator/>
                 <MenuItem Name="Menu_Exit" Header="Выход"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Окна">
+            <MenuItem Header="Разделы">
                 <MenuItem Name="Menu_Main" Header="Главная"></MenuItem>
                 <MenuItem Name="Menu_Auction" Header="Аукцион"></MenuItem>
                 <MenuItem Name="Menu_Samples" Header="Сэмплы"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Окна">
+                <MenuItem Name="Menu_AuctionWindow" Header="Аукцион"></MenuItem>
             </MenuItem>
             <MenuItem Header="Настройки">
                 <MenuItem Header="Параметры сэмплов"></MenuItem>
@@ -60,10 +67,42 @@
 
         <Image Source="Images/background.jpg" Stretch="UniformToFill" Opacity="0.2" Margin="0,20,0,0"/>
 
-        <Grid Name="NavigationGrid"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="0,25,0,0" Background="#19F30F0F" >
-            <Button Name="Nav_Main" Style="{DynamicResource RoundCorner}" Content="Главная" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,0,5,160" Foreground="White" />
-            <Button Name="Nav_Auction" Style="{DynamicResource RoundCorner}" Content="Аукцион" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,0,5,75" Foreground="White" />
-            <Button Name="Nav_Samples" Style="{DynamicResource RoundCorner}" Content="Сэмплы" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,10,5,0" Foreground="White" />
+        <Grid Name="NavigationGrid"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="0,25,0,5" Background="#3FF03737" >
+            <Grid.Effect>
+                <DropShadowEffect Direction="0" ShadowDepth="3" BlurRadius="10"/>
+            </Grid.Effect>
+            <Border BorderBrush="White" BorderThickness="2" />
+
+            <Label Content="RoadHouse  Studio" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="18" FontFamily="Oswald" >
+                <Label.Effect>
+                    <DropShadowEffect Direction="-90" BlurRadius="6" ShadowDepth="3"/>
+                </Label.Effect>
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2FE3F5" Offset="0"/>
+                        <GradientStop Color="#FFEB6BF1" Offset="1"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+
+            <Button Name="Nav_Main" Style="{DynamicResource RoundCorner}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,0,5,160">
+                <Grid Width="{Binding ActualWidth, ElementName=Nav_Main, Mode=OneWay}" >
+                    <Image Source="Images/Icons/home.png" Width="16" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+                    <Label Content="Главная" FontSize="24" Foreground="Black" FontFamily="Franklin Gothic Medium" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Nav_Auction" Style="{DynamicResource RoundCorner}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,0,5,60" >
+                <Grid Width="{Binding ActualWidth, ElementName=Nav_Main, Mode=OneWay}" >
+                    <Image Source="Images/Icons/auction.png" Width="16" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+                    <Label Content="Аукцион" FontSize="24" Foreground="Black" FontFamily="Franklin Gothic Medium" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Nav_Samples" Style="{DynamicResource RoundCorner}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" Height="40" Margin="5,40,5,0">
+                <Grid Width="{Binding ActualWidth, ElementName=Nav_Main, Mode=OneWay}" >
+                    <Image Source="Images/Icons/volume.png" Width="16" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+                    <Label Content="Сэмплы" FontSize="24" Foreground="Black" FontFamily="Franklin Gothic Medium" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
             <Label Name="AppVersion" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="150" Height="25" Foreground="White"/>
         </Grid>
         <Frame Name="NavigationFrame" NavigationUIVisibility="Hidden" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="160,20,0,0" />
