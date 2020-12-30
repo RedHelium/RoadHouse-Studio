@@ -91,9 +91,9 @@
     </ApplicationDefinition>
     <Compile Include="Networking\Query.cs" />
     <Compile Include="Networking\Request.cs" />
-    <Compile Include="Networking\Response.cs" />
     <Compile Include="Networking\Scopes.cs" />
     <Compile Include="Networking\SocketSenderTest.cs" />
+    <Compile Include="Networking\UriResponseBuilder.cs" />
     <Compile Include="Resources\MainSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
