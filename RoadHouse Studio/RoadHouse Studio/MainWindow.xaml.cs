@@ -1,5 +1,6 @@
 ﻿using RoadHouse_Studio.Pages;
 using RoadHouse_Studio.Resources;
+using RoadHouse_Studio.Windows;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,8 @@ namespace RoadHouse_Studio
         private readonly MainPage mainPage = new MainPage();
         private readonly AuctionPage auctionPage = new AuctionPage();
         private readonly SamplesPage samplesPage = new SamplesPage();
+        
+        private AuctionWindow auctionWindow;
 
         public MainWindow()
         {
@@ -43,6 +46,13 @@ namespace RoadHouse_Studio
             InitNavigationMenuButton(Menu_Samples, samplesPage);
 
             Menu_ImportSamples.Click += ImportSamples;
+            Menu_AuctionWindow.Click += OpenAuctionWindow;
+        }
+
+        private void OpenAuctionWindow(object sender, RoutedEventArgs args)
+        {
+            auctionWindow = new AuctionWindow();
+            auctionWindow.Show();
         }
 
         private void ImportSamples(object sender, RoutedEventArgs args) => samplesPage.samples.Open();
