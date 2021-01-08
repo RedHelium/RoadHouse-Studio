@@ -129,11 +129,29 @@
   <data name="On State" xml:space="preserve">
     <value>Вкл</value>
   </data>
+  <data name="Redirect URL" xml:space="preserve">
+    <value>https://127.0.0.1/</value>
+  </data>
   <data name="Sound Ext" xml:space="preserve">
     <value>*.mp3</value>
   </data>
+  <data name="Test Access Token" xml:space="preserve">
+    <value />
+    <comment>TODO REMOVE</comment>
+  </data>
+  <data name="Test Client ID" xml:space="preserve">
+    <value />
+    <comment>TODO REMOVE</comment>
+  </data>
+  <data name="Test Client Secret" xml:space="preserve">
+    <value />
+    <comment>TODO REMOVE</comment>
+  </data>
   <data name="Test Server URL" xml:space="preserve">
     <value>ws://devbot.ekma.is</value>
+  </data>
+  <data name="Twitch API Channel Points" xml:space="preserve">
+    <value>https://api.twitch.tv/helix/channel_points/custom_rewards?broadcaster_id=</value>
   </data>
   <data name="Twitch OAuth Host" xml:space="preserve">
     <value>id.twitch.tv</value>
@@ -143,5 +161,8 @@
   </data>
   <data name="Twitch OAuth Protocol" xml:space="preserve">
     <value>https</value>
+  </data>
+  <data name="Twitch OAuth URI" xml:space="preserve">
+    <value>https://id.twitch.tv/oauth2/validate</value>
   </data>
 </root>

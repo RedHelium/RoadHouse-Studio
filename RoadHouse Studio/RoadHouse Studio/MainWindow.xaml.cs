@@ -1,6 +1,7 @@
 ﻿using RoadHouse_Studio.Networking;
 using RoadHouse_Studio.Pages;
 using RoadHouse_Studio.Resources;
+using RoadHouse_Studio.Windows;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,8 @@ namespace RoadHouse_Studio
         private readonly MainPage mainPage = new MainPage();
         private readonly AuctionPage auctionPage = new AuctionPage();
         private readonly SamplesPage samplesPage = new SamplesPage();
+        
+        private AuctionWindow auctionWindow;
 
         public MainWindow()
         {
@@ -21,31 +24,6 @@ namespace RoadHouse_Studio
             NavigationFrame.Navigate(mainPage);
 
             InitViewerEvents();
-
-            //TODO: Remove
-            UriResponseBuilder r = new UriResponseBuilder(Strings.Twitch_OAuth_Protocol, Strings.Twitch_OAuth_Host, Strings.Twitch_OAuth_Path);
-            Query q = new Query();
-            Scopes s = new Scopes();
-            s.Append("channel", "read", "redemptions");
-            s.Append("channel", "manage", "redemptions");
-            s.Append("channel", "read", "subscriptions", string.Empty);
-            q.Init(new System.Collections.Generic.KeyValuePair<string, string>("response_type", "token"));
-            q.Append('&', new System.Collections.Generic.KeyValuePair<string, string>("client_id", "<client_id>"));
-            q.Append('&', new System.Collections.Generic.KeyValuePair<string, string>("redirect_uri", "http://localhost"));
-            q.Append('&', new System.Collections.Generic.KeyValuePair<string, string>("scope", s.ToString()));
-
-            r.BuildUri(q);
-            Content c = new Content();
-            c.Start();
-            c.Append(new System.Collections.Generic.KeyValuePair<string, string>("title", "game analysis 1v1"));
-            c.Append(new System.Collections.Generic.KeyValuePair<string, string>("cost", "50000"), string.Empty);
-            c.End();
-
-            Console.WriteLine(c.ToString());           
-
-            //SocketSenderTest t = new SocketSenderTest();
-            //t.TestConnection();
-           
         }
 
         private void InitViewerEvents()
@@ -68,6 +46,13 @@ namespace RoadHouse_Studio
             InitNavigationMenuButton(Menu_Samples, samplesPage);
 
             Menu_ImportSamples.Click += ImportSamples;
+            Menu_AuctionWindow.Click += OpenAuctionWindow;
+        }
+
+        private void OpenAuctionWindow(object sender, RoutedEventArgs args)
+        {
+            auctionWindow = new AuctionWindow();
+            auctionWindow.Show();
         }
 
         private void ImportSamples(object sender, RoutedEventArgs args) => samplesPage.samples.Open();

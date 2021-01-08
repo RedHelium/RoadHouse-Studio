@@ -89,8 +89,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="JSON Objects\Reward.cs" />
+    <Compile Include="JSON Objects\ValidationResult.cs" />
+    <Compile Include="Networking\KeysStorage.cs" />
     <Compile Include="Networking\Query.cs" />
     <Compile Include="Networking\Request.cs" />
+    <Compile Include="Networking\Requests\CreateRewardRequest.cs" />
+    <Compile Include="Networking\Requests\DeleteRewardRequest.cs" />
+    <Compile Include="Networking\Requests\GetRewardsRequest.cs" />
+    <Compile Include="Networking\Requests\ValidationRequest.cs" />
     <Compile Include="Networking\Scopes.cs" />
     <Compile Include="Networking\SocketSenderTest.cs" />
     <Compile Include="Networking\UriResponseBuilder.cs" />
@@ -104,6 +111,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AuctionWindow.xaml.cs">
+      <DependentUpon>AuctionWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SamplesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AuctionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,5 +219,6 @@
     <Resource Include="Images\Icons\home.png" />
     <Resource Include="Images\Icons\volume.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

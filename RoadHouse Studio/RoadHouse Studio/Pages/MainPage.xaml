@@ -7,15 +7,50 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Main">
-
+    <Page.Resources>
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="20" Background="#FFDA2D2D">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FF37CB6D"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid>
             <Label Content="Главная" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" FontSize="42"/>
 
             <Label Content="Client ID" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Margin="0,0,500,200" />
             <PasswordBox Name="ClientID" HorizontalAlignment="Center"  MaxLength="128" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,0,100,125" />
-            <Label Content="Client Secret" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Margin="0,0,450,0" />
+            <Label Content="Client Secret (User Token)" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Margin="0,0,320,0" />
             <PasswordBox Name="ClientSecret" HorizontalAlignment="Center"  MaxLength="128" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,75,100,0" />
+            <Button Name="GenerateLink" Style="{DynamicResource RoundCorner}" FontSize="20" Content="Авторизация" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Height="50" Margin="0,0,0,10" Click="GenerateLink_Click" />
+            <Button Name="Validate" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Validate" Width="150" Height="50" Margin="400,0,0,10" Click="Validate_Click"/>
+            <Button Name="CreateReward" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Create Reward" Width="150" Height="50" Margin="-400,0,0,10" Click="CreateReward_Click"/>
+            <Button Name="DeleteReward" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Delete Reward" Width="150" Height="50" Margin="-400,0,0,100" Click="DeleteReward_Click"/>
 
         </Grid>
     </Grid>

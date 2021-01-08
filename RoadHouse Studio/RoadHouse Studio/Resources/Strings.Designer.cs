@@ -97,6 +97,15 @@ namespace RoadHouse_Studio.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на https://127.0.0.1/.
+        /// </summary>
+        internal static string Redirect_URL {
+            get {
+                return ResourceManager.GetString("Redirect URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на *.mp3.
         /// </summary>
         internal static string Sound_Ext {
@@ -106,11 +115,47 @@ namespace RoadHouse_Studio.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        internal static string Test_Access_Token {
+            get {
+                return ResourceManager.GetString("Test Access Token", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        internal static string Test_Client_ID {
+            get {
+                return ResourceManager.GetString("Test Client ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        internal static string Test_Client_Secret {
+            get {
+                return ResourceManager.GetString("Test Client Secret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на ws://devbot.ekma.is.
         /// </summary>
         internal static string Test_Server_URL {
             get {
                 return ResourceManager.GetString("Test Server URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на https://api.twitch.tv/helix/channel_points/custom_rewards?broadcaster_id=.
+        /// </summary>
+        internal static string Twitch_API_Channel_Points {
+            get {
+                return ResourceManager.GetString("Twitch API Channel Points", resourceCulture);
             }
         }
         
@@ -138,6 +183,15 @@ namespace RoadHouse_Studio.Resources {
         internal static string Twitch_OAuth_Protocol {
             get {
                 return ResourceManager.GetString("Twitch OAuth Protocol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на https://id.twitch.tv/oauth2/validate.
+        /// </summary>
+        internal static string Twitch_OAuth_URI {
+            get {
+                return ResourceManager.GetString("Twitch OAuth URI", resourceCulture);
             }
         }
     }

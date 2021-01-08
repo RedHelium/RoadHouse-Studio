@@ -63,6 +63,7 @@
             <MenuItem Header="Настройки">
                 <MenuItem Header="Параметры сэмплов"></MenuItem>
             </MenuItem>
+            <MenuItem Header="Справка"></MenuItem>
         </Menu>
 
         <Image Source="Images/background.jpg" Stretch="UniformToFill" Opacity="0.2" Margin="0,20,0,0"/>
