@@ -135,10 +135,6 @@
   <data name="Sound Ext" xml:space="preserve">
     <value>*.mp3</value>
   </data>
-  <data name="Test Access Token" xml:space="preserve">
-    <value />
-    <comment>TODO REMOVE</comment>
-  </data>
   <data name="Test Client ID" xml:space="preserve">
     <value />
     <comment>TODO REMOVE</comment>

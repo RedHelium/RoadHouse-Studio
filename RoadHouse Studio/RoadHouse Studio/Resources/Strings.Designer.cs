@@ -117,15 +117,6 @@ namespace RoadHouse_Studio.Resources {
         /// <summary>
         ///   Ищет локализованную строку, похожую на .
         /// </summary>
-        internal static string Test_Access_Token {
-            get {
-                return ResourceManager.GetString("Test Access Token", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на .
-        /// </summary>
         internal static string Test_Client_ID {
             get {
                 return ResourceManager.GetString("Test Client ID", resourceCulture);

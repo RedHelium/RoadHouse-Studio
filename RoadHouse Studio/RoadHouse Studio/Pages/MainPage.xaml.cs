@@ -1,13 +1,10 @@
-﻿using Newtonsoft.Json;
-using RoadHouse_Studio.JSON_Objects;
+﻿using RoadHouse_Studio.JSON_Objects;
 using RoadHouse_Studio.Networking;
-using RoadHouse_Studio.Networking.Requests;
 using RoadHouse_Studio.Resources;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
-using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
@@ -21,14 +18,27 @@ namespace RoadHouse_Studio.Pages
     {
         private string userID; //TODO: Replace in keys storage
         private Reward reward;
+        private RequestsSender requestsSender;
 
         public MainPage()
         {
             InitializeComponent();
+
+            requestsSender = new RequestsSender();
         }
 
 
         private void GenerateLink_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+            Process.Start(GenerateAccessTokenURI());
+
+            //TODO: Make a new thread for this mehtod
+            //InitServer(); 
+
+        }
+
+        private string GenerateAccessTokenURI()
         {
             UriResponseBuilder linkBuilder = new UriResponseBuilder(Strings.Twitch_OAuth_Protocol, Strings.Twitch_OAuth_Host, Strings.Twitch_OAuth_Path);
             Query linkData = new Query();
@@ -45,11 +55,7 @@ namespace RoadHouse_Studio.Pages
 
             linkBuilder.BuildUri(linkData);
 
-            Process.Start(linkBuilder.ToString());
-
-            //TODO: Make a new thread for this mehtod
-            //InitServer(); 
-
+            return linkBuilder.ToString();
         }
 
         private void InitServer()
@@ -103,33 +109,7 @@ namespace RoadHouse_Studio.Pages
         //TODO: Automate. Call validation method after traffic listen
         private void Validate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            Validation();
-        }
-
-        private async void Validation()
-        {
-            Uri validationURI = new Uri(Strings.Twitch_OAuth_URI);
-
-            using (HttpClient client = new HttpClient())
-            {
-                using (ValidationRequest validationRequest = new ValidationRequest(validationURI, Strings.Test_Client_Secret))
-                {
-                    var response = await client.SendAsync(validationRequest.request);
-
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        string result = response.Content.ReadAsStringAsync().Result;
-                        JSON_Objects.ValidationResult validationResult = JsonConvert.DeserializeObject<JSON_Objects.ValidationResult>(result);
-                        userID = validationResult.user_id;
-                        Console.WriteLine(result);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ошибка валидации, статус ошибки: \n" + response.Content.ReadAsStringAsync().Result);
-                        userID = string.Empty;
-                    }
-                }
-            }
+            requestsSender.Validation();
         }
 
         private void CreateReward_Click(object sender, RoutedEventArgs e)
@@ -141,61 +121,13 @@ namespace RoadHouse_Studio.Pages
             c.Append(new KeyValuePair<string, object>("cost", 50000), string.Empty);
             c.End();
 
-            CreateRewardRequest(uri, Strings.Test_Client_ID, Strings.Test_Client_Secret, c, "application/json");
-        }
-
-        //TODO: Replace into another class
-        private async void CreateRewardRequest(Uri uri, string clientID, string userToken, Content content, string type)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                using (CreateRewardRequest createRewardRequest = new CreateRewardRequest(uri, clientID, userToken, content, type))
-                {
-                    var response = await client.SendAsync(createRewardRequest.request);
-                    string result = response.Content.ReadAsStringAsync().Result;
-
-                    //TODO: Finish it
-                    Reward rewardObj = JsonConvert.DeserializeObject<Reward>(result);
-                    reward = rewardObj;
-
-                    Console.WriteLine(response.StatusCode);
-                    Console.WriteLine(result);
-                    Console.WriteLine(reward.data.Count + " " + reward.data[0].id);
-                }
-            }
-        }
-
-        //TODO: Replace into another class
-        private async void DeleteRewardRequest(Uri uri, string clientID, string userToken)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                using (DeleteRewardRequest deleteRewardRequest = new DeleteRewardRequest(uri, clientID, userToken))
-                {
-                    var response = await client.SendAsync(deleteRewardRequest.request);
-                    Console.WriteLine(response.StatusCode);
-                }
-            }
+            requestsSender.CreateRewardRequest(uri, Strings.Test_Client_ID, Strings.Test_Client_Secret, c, "application/json");
         }
 
         private void DeleteReward_Click(object sender, RoutedEventArgs e)
         {
             Uri uri = new Uri(string.Concat(Strings.Twitch_API_Channel_Points, userID, "&id=", reward.data[0].id));
-            DeleteRewardRequest(uri, Strings.Test_Client_ID, Strings.Test_Client_Secret);
-        }
-
-        //TODO: Replace into another class
-        private async void GetRewardsRequest(Uri uri, string clientID, string userToken)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                using (GetRewardsRequest getRewardsRequest = new GetRewardsRequest(uri, clientID, userToken))
-                {
-                    var response = await client.SendAsync(getRewardsRequest.request);
-                    string result = response.Content.ReadAsStringAsync().Result;
-                    Console.WriteLine(response.StatusCode);
-                }
-            }
+            requestsSender.DeleteRewardRequest(uri, Strings.Test_Client_ID, Strings.Test_Client_Secret);
         }
     }
 }
