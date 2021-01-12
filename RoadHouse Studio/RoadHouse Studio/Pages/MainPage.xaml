@@ -45,8 +45,18 @@
 
             <Label Content="Client ID" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Margin="0,0,500,200" />
             <PasswordBox Name="ClientID" HorizontalAlignment="Center"  MaxLength="128" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,0,100,125" />
-            <Label Content="Client Secret (User Token)" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Margin="0,0,320,0" />
-            <PasswordBox Name="ClientSecret" HorizontalAlignment="Center"  MaxLength="128" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,75,100,0" />
+            <Button x:Name="ShowClientID" Style="{DynamicResource RoundCorner}" Width="36" Height="36" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="450,0,0,125">
+                <Image Source="/RoadHouse Studio;component/Images/Icons/eye.png" Margin="5"  />
+            </Button>
+            <TextBox Name="ClientIDVisible" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,0,100,125" Text="{Binding Password, ElementName=ClientID}" />
+
+            <Label Content="User Token" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Margin="0,0,475,0" />
+            <PasswordBox Name="UserToken" HorizontalAlignment="Center"  MaxLength="128" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,75,100,0" />
+            <Button x:Name="ShowUserToken" Style="{DynamicResource RoundCorner}" Width="36" Height="36" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="450,75,0,0">
+                <Image Source="/RoadHouse Studio;component/Images/Icons/eye.png" Margin="5"  />
+            </Button>
+            <TextBox Name="UserTokenVisible" HorizontalAlignment="Center"  MaxLength="128" VerticalContentAlignment="Center" VerticalAlignment="Center"  Width="500" Height="35" BorderThickness="2" BorderBrush="White" Foreground="White" Background="Black" Margin="0,75,100,0" Text="{Binding Password, ElementName=ClientSecret}" />
+
             <Button Name="GenerateLink" Style="{DynamicResource RoundCorner}" FontSize="20" Content="Авторизация" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="150" Height="50" Margin="0,0,0,10" Click="GenerateLink_Click" />
             <Button Name="Validate" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Validate" Width="150" Height="50" Margin="400,0,0,10" Click="Validate_Click"/>
             <Button Name="CreateReward" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Create Reward" Width="150" Height="50" Margin="-400,0,0,10" Click="CreateReward_Click"/>

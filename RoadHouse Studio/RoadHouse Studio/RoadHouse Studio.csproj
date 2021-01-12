@@ -103,6 +103,9 @@
     <Compile Include="Networking\Scopes.cs" />
     <Compile Include="Networking\SocketSenderTest.cs" />
     <Compile Include="Networking\UriResponseBuilder.cs" />
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\MainSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SamplesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +228,14 @@
     <Resource Include="Images\Icons\home.png" />
     <Resource Include="Images\Icons\volume.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Icons\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\auction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Icons\timer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

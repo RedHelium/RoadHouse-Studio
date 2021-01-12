@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -15,9 +14,9 @@ namespace RoadHouse_Studio.Networking
 
         public void End() => content += "\n}";
 
-        public void Append(KeyValuePair<string, object> value, string delimiter = ",")
-        => content += string.Concat('\n', '\t',  "\u0022" + value.Key + "\u0022",
-        ':', value.Value.GetType().Equals(typeof(string)) == true ? ("\u0022" + value.Value + "\u0022") : value.Value, delimiter);    
+        public void Append(string key, string value, string delimiter = ",")
+        => content += string.Concat('\n', '\t',  "\u0022" + key + "\u0022",
+        ':', "\u0022" + value + "\u0022", delimiter);    
 
         public override string ToString() => content;
     }

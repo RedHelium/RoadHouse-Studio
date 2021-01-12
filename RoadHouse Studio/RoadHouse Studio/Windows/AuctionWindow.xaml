@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="Аукцион" Height="1080" Width="1920" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
+        <Image Source="/RoadHouse Studio;component/Images/auction.png" Stretch="UniformToFill" />
+        <ListBox x:Name="Lots" BorderThickness="4" BorderBrush="White" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Width="1000" Height="750" Margin="150,150,0,0" Foreground="White" />
+
+        <Border Width="450" Height="100" VerticalAlignment="Center" HorizontalAlignment="Left" Background="#7F000000" BorderThickness="4" BorderBrush="White" Padding="0" Margin="40,0,0,400">
+            <Label Content="Шейхи аукциона" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Foreground="White"/>
+        </Border>
+        <ListBox x:Name="TopBidders" BorderThickness="4" BorderBrush="White" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Left" Width="450" Height="576" Margin="40,400,0,75" Foreground="White" />
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Right" Height="225" Margin="0,0,25,0" Background="#7F000000" Width="325">
+            <Border BorderBrush="White" BorderThickness="4"/>
+            <TextBlock x:Name="Timer" Text="00:00" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="120" Foreground="#FFE72641" Margin="0"/>
+            <Image VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="48" Height="48" Source="/RoadHouse Studio;component/Images/Icons/timer.png" Margin="0,0,5,5"  />
+        </Grid>
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Right" Height="150" Margin="0,500,25,0" Background="#7F000000" Width="325">
+            <Border BorderBrush="White" BorderThickness="4"/>
+            <TextBlock TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="32" Foreground="White" Margin="0">
+                Суммарное кол-во <LineBreak/> шоблингов
+            </TextBlock>
+            
+            <TextBlock x:Name="Sum" Text="0" TextAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FontSize="54" Foreground="#FFE7D526" Margin="0"/>
+        </Grid>
         
     </Grid>
 </Window>

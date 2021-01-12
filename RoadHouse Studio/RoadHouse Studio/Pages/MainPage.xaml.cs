@@ -13,10 +13,9 @@ using System.Windows.Controls;
 namespace RoadHouse_Studio.Pages
 {
 
-
     public partial class MainPage : Page
     {
-        private string userID; //TODO: Replace in keys storage
+
         private Reward reward;
         private RequestsSender requestsSender;
         private KeysStorage keysStorage; //TODO: Init this class in MainWindow class
@@ -49,10 +48,10 @@ namespace RoadHouse_Studio.Pages
             linkScopes.Append("channel", "manage", "redemptions");
             linkScopes.Append("channel", "read", "subscriptions", string.Empty);
 
-            linkData.Init(new KeyValuePair<string, string>("response_type", "token"));
-            linkData.Append('&', new KeyValuePair<string, string>("client_id", ClientID.Password));
-            linkData.Append('&', new KeyValuePair<string, string>("redirect_uri", Strings.Redirect_URL));
-            linkData.Append('&', new KeyValuePair<string, string>("scope", linkScopes.ToString()));
+            linkData.Init("response_type", "token");
+            linkData.Append('&', "client_id", ClientID.Password);
+            linkData.Append('&', "redirect_uri", Strings.Redirect_URL);
+            linkData.Append('&', "scope", linkScopes.ToString());
 
             linkBuilder.BuildUri(linkData);
 
@@ -108,18 +107,18 @@ namespace RoadHouse_Studio.Pages
         }
 
         //TODO: Automate. Call validation method after traffic listen
-        private void Validate_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Validate_Click(object sender, RoutedEventArgs e)
         {
             requestsSender.Validation();
         }
 
         private void CreateReward_Click(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri(Strings.Twitch_API_Channel_Points + userID);
+            Uri uri = new Uri(Strings.Twitch_API_Channel_Points + keysStorage.userID);
             Content c = new Content();
             c.Start();
-            c.Append(new KeyValuePair<string, object>("title", "TEST"));
-            c.Append(new KeyValuePair<string, object>("cost", 50000), string.Empty);
+            c.Append("title", "TEST");
+            c.Append("cost", "50000", string.Empty);
             c.End();
 
             requestsSender.CreateRewardRequest(uri, Strings.Test_Client_ID, Strings.Test_Client_Secret, c, "application/json");
@@ -127,8 +126,9 @@ namespace RoadHouse_Studio.Pages
 
         private void DeleteReward_Click(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri(string.Concat(Strings.Twitch_API_Channel_Points, userID, "&id=", reward.data[0].id));
+            Uri uri = new Uri(string.Concat(Strings.Twitch_API_Channel_Points, keysStorage.userID, "&id=", reward.data[0].id));
             requestsSender.DeleteRewardRequest(uri, Strings.Test_Client_ID, Strings.Test_Client_Secret);
         }
+   
     }
 }

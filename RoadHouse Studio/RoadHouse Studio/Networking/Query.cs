@@ -13,11 +13,11 @@ namespace RoadHouse_Studio.Networking
         /// Initialize first parameter
         /// </summary>
         /// <param name="value"></param>
-        public void Init(KeyValuePair<string, string> value)
-        => query = string.Concat(value.Key, '=', value.Value);
+        public void Init(string key, string value)
+        => query = string.Concat(key, '=', value);
 
-        public void Append(char symbol, KeyValuePair<string, string> value)
-        => query += string.Concat(symbol, value.Key, '=', value.Value);
+        public void Append(char symbol, string key, string value)
+        => query += string.Concat(symbol, key, '=', value);
 
         public override string ToString() => query;
 

@@ -60,9 +60,7 @@
             <MenuItem Header="Окна">
                 <MenuItem Name="Menu_AuctionWindow" Header="Аукцион"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Настройки">
-                <MenuItem Header="Параметры сэмплов"></MenuItem>
-            </MenuItem>
+            <MenuItem Header="Настройки"></MenuItem>
             <MenuItem Header="Справка"></MenuItem>
         </Menu>
 
