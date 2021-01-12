@@ -19,12 +19,13 @@ namespace RoadHouse_Studio.Pages
         private string userID; //TODO: Replace in keys storage
         private Reward reward;
         private RequestsSender requestsSender;
+        private KeysStorage keysStorage; //TODO: Init this class in MainWindow class
 
         public MainPage()
         {
             InitializeComponent();
 
-            requestsSender = new RequestsSender();
+            requestsSender = new RequestsSender(keysStorage);
         }
 
 

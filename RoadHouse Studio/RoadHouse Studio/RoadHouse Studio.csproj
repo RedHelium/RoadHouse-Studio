@@ -94,6 +94,8 @@
     <Compile Include="Networking\KeysStorage.cs" />
     <Compile Include="Networking\Query.cs" />
     <Compile Include="Networking\Request.cs" />
+    <Compile Include="Networking\RequestsSender.cs" />
+    <Compile Include="Networking\Requests\ChangeRewardParamsRequest.cs" />
     <Compile Include="Networking\Requests\CreateRewardRequest.cs" />
     <Compile Include="Networking\Requests\DeleteRewardRequest.cs" />
     <Compile Include="Networking\Requests\GetRewardsRequest.cs" />

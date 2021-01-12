@@ -11,6 +11,12 @@ namespace RoadHouse_Studio.Networking
 {
     public sealed class RequestsSender
     {
+        private KeysStorage keysStorage;
+
+        public RequestsSender(KeysStorage keysStorage)
+        {
+            this.keysStorage = keysStorage;
+        }
 
         public async void Validation()
         {
@@ -26,13 +32,13 @@ namespace RoadHouse_Studio.Networking
                     {
                         string result = response.Content.ReadAsStringAsync().Result;
                         ValidationResult validationResult = JsonConvert.DeserializeObject<ValidationResult>(result);
-                        userID = validationResult.user_id;
+                        keysStorage.SetID(validationResult.user_id);
                         Console.WriteLine(result);
                     }
                     else
                     {
                         MessageBox.Show("Ошибка валидации, статус ошибки: \n" + response.Content.ReadAsStringAsync().Result);
-                        userID = string.Empty;
+                        keysStorage.SetID(string.Empty);
                     }
                 }
             }
