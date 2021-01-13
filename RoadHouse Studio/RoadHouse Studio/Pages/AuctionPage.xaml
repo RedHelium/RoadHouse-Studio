@@ -7,9 +7,104 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Auction">
-
+    <Page.Resources>
+        <Style x:Key="RoundToggleCorner" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="background" CornerRadius="20" Background="#FFDA2D2D">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" TargetName="background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FF37CB6D"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Background" TargetName="background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FFDA2D2D"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FFD1D82F" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="20" Background="#FFDA2D2D">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FF37CB6D"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Label Content="Аукцион" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White" FontSize="42"/>
+        <Label Name="AuctionState" Content="Статус: закрыт" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="White" FontSize="24" Margin="10,25,0,0"/>
 
+        
+
+        <ListBox x:Name="Lots" BorderThickness="4" BorderBrush="White" Background="#7F000000" VerticalAlignment="Center" HorizontalAlignment="Center" Width="400" Height="350" Margin="0,75,0,0" Foreground="White" />
+
+        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Left" Margin="10,75,0,0">
+            <ToggleButton Name="SwitchAuctionState" ToolTip="Включает/отключает аукцион" Style="{DynamicResource RoundToggleCorner}"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="48" Background="#FFDA2D2D" BorderBrush="{x:Null}" Margin="0" >
+                <Label Name="SwitchAuctionStateLabel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Выкл" FontWeight="Bold" FontSize="14" />
+            </ToggleButton>
+            <ToggleButton Name="SwitchAuctionWindow" ToolTip="Открыть/закрыть окно аукциона" Style="{DynamicResource RoundToggleCorner}"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="48" Background="#FFDA2D2D" BorderBrush="{x:Null}" Margin="0,2,0,0" >
+                <Label Name="SwitchAuctionWindowLabel" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="Открыть окно" FontWeight="Bold" FontSize="10" />
+            </ToggleButton>
+            <Label Content="Начальный таймер (мин.)" Foreground="White"/>
+            <TextBox x:Name="StartTime" BorderThickness="3" MaxLength="2" HorizontalContentAlignment="Center" BorderBrush="White" Background="#7F000000" Foreground="White" Height="30"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" Margin="0,75,10,0">
+            <Label Content="Дополнительное время (сек.)" Foreground="White"/>
+            <TextBox x:Name="ExtraTime" BorderThickness="3" MaxLength="4" HorizontalContentAlignment="Center" BorderBrush="White" Background="#7F000000" Foreground="White" Height="30" Text="30"/>
+            <Button x:Name="AddSeconds" Content="Добавить" FontSize="20" FontWeight="Bold" Style="{DynamicResource RoundCorner}" Height="50" Margin="0,5,0,0" />
+            <Label HorizontalAlignment="Center" Content="Таймер" FontSize="20" Foreground="White" Margin="0,5,0,0"/>
+            <Border Background="Black" BorderThickness="3" BorderBrush="White" Height="75">
+                <TextBlock Text="00:00" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="42" FontWeight="Bold"/>
+            </Border>
+        </StackPanel>
+        
     </Grid>
 </Page>

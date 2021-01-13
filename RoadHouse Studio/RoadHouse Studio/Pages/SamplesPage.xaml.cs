@@ -69,10 +69,10 @@ namespace RoadHouse_Studio.Pages
 
         private void RefreshSamples(object sender, EventArgs args) => samples.Refresh();
 
-        private void ActiveSwitchSamplesLabel(object sender, EventArgs args) => ChangeSwitchLabel(true, SwitchSamplesLabel);
-        private void InactiveSwitchSamplesLabel(object sender, EventArgs args) => ChangeSwitchLabel(false, SwitchSamplesLabel);
+        private void ActiveSwitchSamplesLabel(object sender, EventArgs args) => ChangeSamplesStateLabel(true, SwitchSamplesLabel);
+        private void InactiveSwitchSamplesLabel(object sender, EventArgs args) => ChangeSamplesStateLabel(false, SwitchSamplesLabel);
 
-        private void ChangeSwitchLabel(bool state, Label label)
+        private void ChangeSamplesStateLabel(bool state, Label label)
         {
             if (state) label.Content = Strings.On_State;
             else label.Content = Strings.Off_State;

@@ -91,6 +91,7 @@
     </ApplicationDefinition>
     <Compile Include="JSON Objects\Reward.cs" />
     <Compile Include="JSON Objects\ValidationResult.cs" />
+    <Compile Include="Models\Auction.cs" />
     <Compile Include="Networking\KeysStorage.cs" />
     <Compile Include="Networking\Query.cs" />
     <Compile Include="Networking\Request.cs" />
